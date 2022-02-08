@@ -65,7 +65,7 @@ jobs:
       - name: configure project
         run: |
           mkdir -p logs && mkdir -p media/uploads
-          cp example/local_settings.example meal-management-system/local_settings.py
+          cp example/local_settings.example MealManagementSystem/local_settings.py
       # initialize project with makemigrations and migrate
       - name: run migrations
         env:
