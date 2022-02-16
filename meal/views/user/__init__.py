@@ -1,6 +1,6 @@
-from .register import register_request
+from .register import RegisterView
 
 
 __all__ = [
-    register_request
+    RegisterView
 ]
