@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # local apps
-    'meal'
+    'meal',
+
+    # plugins
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
