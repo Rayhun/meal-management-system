@@ -75,15 +75,3 @@ jobs:
         run: |
           python manage.py makemigrations
           python manage.py migrate --noinput
-      # run project tests with coverage report, linting with flake8
-      - name: run tests
-        env:
-          DB_NAME: $DB_NAME
-          DB_USER: $DB_USER
-          DB_PASS: $DB_PASS
-        run: |
-          celery worker -A MealManagementSystem -l info &
-          coverage run manage.py test
-          coverage xml -o coverage.xml
-          coverage report
-          # flake8
