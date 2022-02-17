@@ -1,14 +1,13 @@
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import (
-    LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin,
+    LoginRequiredMixin, UserPassesTestMixin
 )
 from meal.models.profile import Profile
 from meal.forms.profile import ProfileForm
 
 
 class ProfileCreateView(
-    LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin,
-    CreateView
+    LoginRequiredMixin, UserPassesTestMixin, CreateView
 ):
     """
     Profile create view.
