@@ -1,14 +1,109 @@
-{% extends "base/base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
 {% load crispy_forms_tags %}  
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>AdminLTE 3 | Log in</title>
 
-{% block content %}
-<div class="container py-5">
-	<h1>Login</h1>
-	<form method="POST">
-	  {% csrf_token %}
-	  {{ form|crispy }}
-	  <button class="btn btn-primary" type="submit">Login</button>
-	</form>
-	<p class="text-center">Don't have an account? <a href="{% url 'register' %}">Create an account</a>.</p>
-  </div>
-{% endblock content %}
+	<link rel="stylesheet"
+		href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
+		<link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+		<link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+		<link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
+		<style>
+			.input-group>.custom-file, .input-group>.custom-select, .input-group>input, .input-group>.form-control-plaintext {
+				position: relative;
+				-ms-flex: 1 1 auto;
+				flex: 1 1 auto;
+				width: 1%;
+				min-width: 0;
+				margin-bottom: 0;
+			}
+			input{
+				display: block;
+				width: 100%;
+				height: calc(2.25rem + 2px);
+				padding: 0.375rem 0.75rem;
+				font-size: 1rem;
+				font-weight: 400;
+				line-height: 1.5;
+				color: #495057;
+				background-color: #fff;
+				background-clip: padding-box;
+				border: 1px solid #ced4da;
+				border-radius: 0.25rem;
+				box-shadow: inset 0 0 0 transparent;
+				transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+			}
+		</style>
+	<script>(function (w, d) { !function (a, e, t, r, z) { a.zarazData = a.zarazData || {}, a.zarazData.executed = [], a.zarazData.tracks = [], a.zaraz = { deferred: [] }; var s = e.getElementsByTagName("title")[0]; s && (a.zarazData.t = e.getElementsByTagName("title")[0].text), a.zarazData.w = a.screen.width, a.zarazData.h = a.screen.height, a.zarazData.j = a.innerHeight, a.zarazData.e = a.innerWidth, a.zarazData.l = a.location.href, a.zarazData.r = e.referrer, a.zarazData.k = a.screen.colorDepth, a.zarazData.n = e.characterSet, a.zarazData.o = (new Date).getTimezoneOffset(), a.dataLayer = a.dataLayer || [], a.zaraz.track = (e, t) => { for (key in a.zarazData.tracks.push(e), t) a.zarazData["z_" + key] = t[key] }, a.zaraz._preSet = [], a.zaraz.set = (e, t, r) => { a.zarazData["z_" + e] = t, a.zaraz._preSet.push([e, t, r]) }, a.dataLayer.push({ "zaraz.start": (new Date).getTime() }), a.addEventListener("DOMContentLoaded", (() => { var t = e.getElementsByTagName(r)[0], z = e.createElement(r); z.defer = !0, z.src = "/cdn-cgi/zaraz/s.js?z=" + btoa(encodeURIComponent(JSON.stringify(a.zarazData))), t.parentNode.insertBefore(z, t) })) }(w, d, 0, "script"); })(window, document);</script>
+</head>
+
+<body class="hold-transition login-page">
+	<div class="login-box">
+		<div class="login-logo">
+			<a href=""><b>Admin</b>LTE</a>
+		</div>
+
+		<div class="card">
+			<div class="card-body login-card-body">
+				<p class="login-box-msg">Sign in to start your session</p>
+				<form method="post">
+					{% csrf_token %}
+					<div class="input-group mb-3">
+						{{ form.username }}
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-user"></span>
+							</div>
+						</div>
+					</div>
+					<div class="input-group mb-3">
+						{{ form.password }}
+						<div class="input-group-append">
+							<div class="input-group-text">
+								<span class="fas fa-lock"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-8">
+							<div class="icheck-primary">
+								<input type="checkbox" id="remember">
+								<label for="remember">
+									Remember Me
+								</label>
+							</div>
+						</div>
+
+						<div class="col-4">
+							<button type="submit" class="btn btn-primary btn-block">Sign In</button>
+						</div>
+
+					</div>
+				</form>
+				<div class="social-auth-links text-center mb-3">
+					<p>- OR -</p>
+					<a href="#" class="btn btn-block btn-primary">
+						<i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+					</a>
+					<a href="#" class="btn btn-block btn-danger">
+						<i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+					</a>
+				</div>
+
+				<p class="mb-1">
+					<a href="forgot-password.html">I forgot my password</a>
+				</p>
+				<p class="mb-0">
+					<a href="register.html" class="text-center">Register a new membership</a>
+				</p>
+			</div>
+
+		</div>
+	</div>
+</body>
+</html>
