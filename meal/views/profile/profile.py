@@ -1,26 +1,23 @@
-from django.views.generic import CreateView
+from django.views.generic import TemplateView
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin,
 )
 from meal.models.profile import Profile
-from meal.forms.profile import ProfileForm
 
 
-class ProfileCreateView(
-    LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin,
-    CreateView
+class ProfileView(
+    LoginRequiredMixin, UserPassesTestMixin,
+    TemplateView
 ):
     """
-    Profile create view.
+    Profile view.
     """
-    model = Profile
-    form_class = ProfileForm
-    template_name = 'profile/profile_create.html'
-    permission = 'meal.add_profile'
-
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super().form_valid(form)
+    template_name = 'profile/profile.html'
 
     def test_func(self):
-        return self.request.user.is_superuser
+        return self.request.user.is_active
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['profile'] = Profile.objects.get(user=self.request.user)
+        return context

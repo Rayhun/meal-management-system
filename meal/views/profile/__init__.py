@@ -1,6 +1,7 @@
-from .profile import ProfileCreateView
+from .create import ProfileCreateView
+from .profile import ProfileView
 
 
 __all__ = [
-    ProfileCreateView
+    ProfileCreateView, ProfileView
 ]
