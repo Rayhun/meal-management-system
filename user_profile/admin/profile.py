@@ -1,6 +1,6 @@
 from django.contrib import admin
 from user_profile.models.profile.profile import Profile
-from user_profile.models.profile.education import Education
+from user_profile.models.profile.education import Education, Skill
 
 
 @admin.register(Profile)
@@ -12,3 +12,8 @@ class ProfileAdmin(admin.ModelAdmin):
 @admin.register(Education)
 class EducationAdmin(admin.ModelAdmin):
     list_display = ['result']
+
+
+@admin.register(Skill)
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ['name']
