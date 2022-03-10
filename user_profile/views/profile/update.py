@@ -32,6 +32,25 @@ class ProfileUpdateView(
                 prefix='formset'
             )
         return super().get_context_data(**kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        formset = EducationFormSet(
+            self.request.POST,
+            queryset=Education.objects.none(),
+            prefix='formset'
+        )
+        if form.is_valid() and formset.is_valid():
+            obj = form.save()
+            formsets = formset.save(commit=False)
+            # formset delete
+            for forms in formset.deleted_objects:
+                forms.delete()
+            # formset save
+            for forms in formsets:
+                forms.profile = obj
+                forms.save()
+            return self.form_valid(form)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
