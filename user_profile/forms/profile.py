@@ -39,7 +39,9 @@ class EducationForm(forms.ModelForm):
     """
     class Meta:
         model = Education
-        fields = ['result', 'university', 'start_date', 'end_date', 'description']
+        fields = [
+            'result', 'university', 'start_date', 'end_date', 'description'
+        ]
 
         widgets = {
             'result': forms.TextInput(

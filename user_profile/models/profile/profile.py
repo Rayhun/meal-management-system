@@ -12,10 +12,13 @@ class Profile(AbstractBaseModel):
     """
     Profile model.
     """
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE,
+        related_name='profile'
+    )
     dob = models.DateField(blank=True, null=True)
-    mobile = models.CharField(max_length=15, blank=True, null=True)
-    address = models.CharField(max_length=255, blank=True, null=True)
+    mobile = models.CharField(max_length=15, blank=True)
+    address = models.CharField(max_length=255, blank=True)
     profile_pic = models.ImageField(
         upload_to='profile_pic', blank=True
     )

@@ -6,6 +6,6 @@ from .profile import (
 
 
 __all__ = [
-    NewUserForm, ProfileForm, EducationFormSet,EducationFormSetUpdate,
+    NewUserForm, ProfileForm, EducationFormSet, EducationFormSetUpdate,
     SkillFormSet, SkillFormSetUpdate
 ]
