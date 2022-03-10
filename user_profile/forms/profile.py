@@ -1,5 +1,5 @@
 from django import forms
-from user_profile.models.profile import Profile, Education
+from user_profile.models.profile import Profile, Education, Skill
 
 
 class ProfileForm(forms.ModelForm):
@@ -81,4 +81,50 @@ EducationFormSet = forms.modelformset_factory(
 
 EducationFormSetUpdate = forms.modelformset_factory(
     Education, form=EducationForm, extra=0, can_delete=True
+)
+
+
+class SkillForm(forms.ModelForm):
+    """
+    Skill form.
+    """
+    class Meta:
+        model = Skill
+        fields = ['name', 'start_date', 'end_date', 'description']
+
+        widgets = {
+            'name': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter Name'
+                }
+            ),
+            'start_date': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'date'
+                }
+            ),
+            'end_date': forms.NumberInput(
+                attrs={
+                    'class': 'form-control',
+                    'type': 'date'
+                }
+            ),
+            'description': forms.Textarea(
+                attrs={
+                    'rows': '3',
+                    'class': 'form-control'
+                }
+            ),
+        }
+
+
+SkillFormSet = forms.modelformset_factory(
+    Skill, form=SkillForm, extra=1, can_delete=True
+)
+
+
+SkillFormSetUpdate = forms.modelformset_factory(
+    Skill, form=SkillForm, extra=0, can_delete=True
 )

@@ -5,9 +5,10 @@ from django.contrib import messages
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
-from user_profile.models.profile import Profile, Education
+from user_profile.models.profile import Profile, Education, Skill
 from user_profile.forms.profile import (
-    ProfileForm, EducationFormSet, EducationFormSetUpdate
+    ProfileForm, EducationFormSet, EducationFormSetUpdate,
+    SkillFormSet, SkillFormSetUpdate,
 )
 
 
@@ -29,24 +30,26 @@ class ProfileUpdateView(
                     profile=self.object,
                 ),
                 prefix='formset'
+            ),
+            kwargs['skill_form'] = SkillFormSet(
+                self.request.POST, queryset=Skill.objects.filter(
+                    profile=self.object,
+                ),
+                prefix='skill_form'
             )
         else:
-            if Education.objects.filter(
+            kwargs['formset'] = EducationFormSet(
+                queryset=Education.objects.filter(
                     profile=self.object,
-                ).last():
-                kwargs['formset'] = EducationFormSetUpdate(
-                    queryset=Education.objects.filter(
-                        profile=self.object,
-                    ),
-                    prefix='formset'
-                )
-            else:
-                kwargs['formset'] = EducationFormSet(
-                    queryset=Education.objects.filter(
-                        profile=self.object,
-                    ),
-                    prefix='formset'
-                )
+                ),
+                prefix='formset'
+            )
+            kwargs['skill_form'] = SkillFormSet(
+                queryset=Skill.objects.filter(
+                    profile=self.object,
+                ),
+                prefix='skill_form'
+            )
         return super().get_context_data(**kwargs)
     
     def post(self, request, *args, **kwargs):
@@ -61,13 +64,26 @@ class ProfileUpdateView(
             ),
             prefix='formset'
         )
-        if form.is_valid() and formset.is_valid():
+        skill_formset = SkillFormSet(
+            self.request.POST,
+            queryset=Skill.objects.filter(
+                profile=self.object,
+            ),
+            prefix='skill_form'
+        )
+        if form.is_valid() and formset.is_valid() and skill_formset.is_valid():
             formsets = formset.save(commit=False)
+            skill_formsets = skill_formset.save(commit=False)
             # formset delete
             for forms in formset.deleted_objects:
                 forms.delete()
+            for forms in skill_formset.deleted_objects:
+                forms.delete()
             # formset save
             for forms in formsets:
+                forms.profile = self.object
+                forms.save()
+            for forms in skill_formsets:
                 forms.profile = self.object
                 forms.save()
             return self.form_valid(form)

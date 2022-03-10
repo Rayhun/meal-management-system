@@ -54,4 +54,4 @@ class Skill(AbstractBaseModel):
     end_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return self.profile.user.username
