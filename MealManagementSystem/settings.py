@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # local apps
     'meal',
+    'user_profile',
 
     # plugins
     'crispy_forms',
