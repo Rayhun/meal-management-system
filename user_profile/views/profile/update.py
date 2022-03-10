@@ -1,4 +1,7 @@
+from django.shortcuts import redirect
 from django.views.generic import UpdateView
+from django.urls import reverse_lazy
+from django.contrib import messages
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
@@ -20,6 +23,13 @@ class ProfileUpdateView(
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
+    
+    def get_success_url(self):
+        url = reverse_lazy('user_profile:profile_view')
+        messages.success(
+            self.request, 'community based water supply created successfully!')
+        return url
+    
 
     def test_func(self):
         return self.request.user.is_superuser

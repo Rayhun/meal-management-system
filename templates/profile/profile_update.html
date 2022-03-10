@@ -8,12 +8,13 @@
             <div class="card-header">
                 <h3 class="card-title">Update Profile</h3>
             </div>
-            <form id="quickForm" novalidate="novalidate">
+            <form id="quickForm" novalidate="novalidate" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="card-body">
                     {{ form|crispy }}
                 </div>
                 <div class="card-footer">
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
