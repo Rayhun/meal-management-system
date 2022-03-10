@@ -5,8 +5,8 @@ from django.contrib import messages
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
-from user_profile.models.profile import Profile
-from user_profile.forms.profile import ProfileForm
+from user_profile.models.profile import Profile, Education
+from user_profile.forms.profile import ProfileForm, EducationFormSet
 
 
 class ProfileUpdateView(
@@ -19,6 +19,19 @@ class ProfileUpdateView(
     form_class = ProfileForm
     template_name = 'profile/profile_update.html'
     permission = 'meal.add_profile'
+
+    def get_context_data(self, **kwargs):
+        if self.request.POST:
+            kwargs['formset'] = EducationFormSet(
+                self.request.POST, queryset=Education.objects.none(),
+                prefix='formset'
+            )
+        else:
+            kwargs['formset'] = EducationFormSet(
+                queryset=Education.objects.none(),
+                prefix='formset'
+            )
+        return super().get_context_data(**kwargs)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
