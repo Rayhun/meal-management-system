@@ -6,7 +6,9 @@ from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
 from user_profile.models.profile import Profile, Education
-from user_profile.forms.profile import ProfileForm, EducationFormSet
+from user_profile.forms.profile import (
+    ProfileForm, EducationFormSet, EducationFormSetUpdate
+)
 
 
 class ProfileUpdateView(
@@ -29,12 +31,22 @@ class ProfileUpdateView(
                 prefix='formset'
             )
         else:
-            kwargs['formset'] = EducationFormSet(
-                queryset=Education.objects.filter(
+            if Education.objects.filter(
                     profile=self.object,
-                ),
-                prefix='formset'
-            )
+                ).last():
+                kwargs['formset'] = EducationFormSetUpdate(
+                    queryset=Education.objects.filter(
+                        profile=self.object,
+                    ),
+                    prefix='formset'
+                )
+            else:
+                kwargs['formset'] = EducationFormSet(
+                    queryset=Education.objects.filter(
+                        profile=self.object,
+                    ),
+                    prefix='formset'
+                )
         return super().get_context_data(**kwargs)
     
     def post(self, request, *args, **kwargs):

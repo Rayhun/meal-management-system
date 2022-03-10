@@ -1,7 +1,7 @@
 from .user import NewUserForm
-from .profile import ProfileForm, EducationFormSet
+from .profile import ProfileForm, EducationFormSet, EducationFormSetUpdate
 
 
 __all__ = [
-    NewUserForm, ProfileForm, EducationFormSet
+    NewUserForm, ProfileForm, EducationFormSet,EducationFormSetUpdate
 ]

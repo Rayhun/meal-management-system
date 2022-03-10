@@ -77,3 +77,8 @@ class EducationForm(forms.ModelForm):
 EducationFormSet = forms.modelformset_factory(
     Education, form=EducationForm, extra=1, can_delete=True
 )
+
+
+EducationFormSetUpdate = forms.modelformset_factory(
+    Education, form=EducationForm, extra=0, can_delete=True
+)
