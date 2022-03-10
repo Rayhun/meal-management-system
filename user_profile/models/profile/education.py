@@ -37,7 +37,7 @@ class Education(AbstractBaseModel):
     description = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.user
+        return self.profile.user.username
 
 
 class Skill(AbstractBaseModel):
