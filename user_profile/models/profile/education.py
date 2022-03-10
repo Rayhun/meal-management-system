@@ -24,7 +24,10 @@ class Education(AbstractBaseModel):
     """
     Education model.
     """
-    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    profile = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, blank=True, null=True,
+        related_name="education"
+    )
     result = models.CharField(max_length=255, blank=True, null=True)
     university = models.ForeignKey(
         University, on_delete=models.SET_NULL, blank=True, null=True
