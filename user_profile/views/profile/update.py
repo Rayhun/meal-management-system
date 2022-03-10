@@ -23,12 +23,16 @@ class ProfileUpdateView(
     def get_context_data(self, **kwargs):
         if self.request.POST:
             kwargs['formset'] = EducationFormSet(
-                self.request.POST, queryset=Education.objects.none(),
+                self.request.POST, queryset=Education.objects.filter(
+                    profile=self.object,
+                ),
                 prefix='formset'
             )
         else:
             kwargs['formset'] = EducationFormSet(
-                queryset=Education.objects.none(),
+                queryset=Education.objects.filter(
+                    profile=self.object,
+                ),
                 prefix='formset'
             )
         return super().get_context_data(**kwargs)
@@ -40,7 +44,9 @@ class ProfileUpdateView(
         form = self.get_form()
         formset = EducationFormSet(
             self.request.POST,
-            queryset=Education.objects.none(),
+            queryset=Education.objects.filter(
+                profile=self.object,
+            ),
             prefix='formset'
         )
         if form.is_valid() and formset.is_valid():
