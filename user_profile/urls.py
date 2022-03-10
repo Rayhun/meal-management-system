@@ -8,6 +8,6 @@ urlpatterns = [
     path('profile/view/', ProfileView.as_view(), name='profile_view'),
     path(
         'profile/<int:pk>/update/', ProfileUpdateView.as_view(),
-        name='profile_create'
+        name='profile_update'
     ),
 ]
