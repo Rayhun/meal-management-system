@@ -1,7 +1,5 @@
 from django.views.generic import TemplateView
-from django.contrib.auth.mixins import (
-    LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin,
-)
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from meal.models.profile import Profile
 
 

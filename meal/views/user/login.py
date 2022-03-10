@@ -22,7 +22,7 @@ class LoginView(View):
             user = form.get_user()
             login(request, user)
             messages.success(request, 'You have successfully logged in!')
-            return redirect('dashboard')
+            return redirect('meal:dashboard')
         else:
             messages.error(request, "Unsuccessful login Invalid information.")
             context = {
