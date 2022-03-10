@@ -1,8 +1,7 @@
 from django.urls import path
 
 # local imports
-from meal import views
-from meal.views.profile import ProfileCreateView, ProfileView
+from user_profile.views.profile import ProfileCreateView, ProfileView
 app_name = 'user_profile'
 
 urlpatterns = [
