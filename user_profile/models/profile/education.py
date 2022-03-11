@@ -6,7 +6,7 @@ from meal.models.abstract.abstract import AbstractBaseModel
 from user_profile.models.profile.profile import Profile
 
 
-class University(AbstractBaseModel):
+class University(models.Model):
     """
     University model.
     """
