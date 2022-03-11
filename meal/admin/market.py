@@ -19,5 +19,5 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(NeedItem)
 class NeedItemAdmin(admin.ModelAdmin):
-    list_display = ['todo' ,'name', 'date']
+    list_display = ['todo', 'name', 'date']
     search_fields = ['name']
