@@ -21,7 +21,8 @@ class TodoListView(
 
 
 class TodoCreateView(
-    LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin, CreateView
+    LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin,
+    CreateView
 ):
     """ View for creating a new todo """
     model = ToDo
