@@ -1,1 +1,44 @@
-{{ form }}
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="card m-4">
+    <div class="card-body">
+        <h4>Create a new <b class="text-primary">Todo</b></h4>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form.user|as_crispy_field }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.name|as_crispy_field }}
+                </div>
+                <div class="col-md-4">
+                    {{ form.category|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.start_date|as_crispy_field }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.end_date|as_crispy_field }}
+                </div>
+                <div class="col-md-12">
+                    {{ form.description|as_crispy_field }}
+                </div>
+                <div class="col-md-6 m-auto">
+                    <button class="btn btn-primary w-100 mt-2" type="submit">Create</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}
+{% block extra_js %}
+    <script>
+        // $(document).ready(function() {
+        //     $('select').select2();
+        // });
+    </script>
+{% endblock extra_js %}

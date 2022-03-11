@@ -2,6 +2,7 @@ from django.views.generic import ListView, CreateView
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 )
+from django.urls import reverse_lazy
 
 from meal.models.market import ToDo
 from meal.forms import ToDoForm
@@ -29,6 +30,12 @@ class TodoCreateView(
     template_name = 'meal/todo/create.html'
     permission_required = 'meal.add_todo'
     form_class = ToDoForm
+    success_url = reverse_lazy('meal:dashboard')
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
+    
+    def form_valid(self, form):
+        """ Set the user to the current user """
+        form.instance.created_user = self.request.user
+        return super().form_valid(form)
