@@ -28,13 +28,14 @@
                         <td>{% if obj.end_date %}{{ obj.end_date }}{% endif %}</td>
                         <td>
                             <div class="progress progress-xs">
-                                <div class="progress-bar progress-bar-danger" style="width: 55%;"></div>
+                                <div class="progress-bar progress-bar-danger" style="width: 5%;"></div>
                             </div>
                         </td>
                         <td><span class="badge bg-danger">55%</span></td>
                         <td>
                             <a href="{% url 'meal:todo_update' obj.pk %}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
+                                {{ obj.progres }}
                             </a>
                         </td>
                     </tr>
