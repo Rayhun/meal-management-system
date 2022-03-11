@@ -4,8 +4,11 @@ from meal.models import ToDo, Category
 
 @admin.register(ToDo)
 class ToDoAdmin(admin.ModelAdmin):
-    list_display = ['user', 'name', 'category', 'description', 'start_date', 'end_date', 'is_completed']
-    search_fields = ['user', 'name', 'category', 'description', 'start_date', 'end_date', 'is_completed']
+    list_display = [
+        'user', 'name', 'category', 'description', 'start_date',
+        'end_date', 'is_completed'
+    ]
+    search_fields = ['user', 'name']
 
 
 @admin.register(Category)
