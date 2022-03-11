@@ -6,4 +6,5 @@ app_name = 'meal'
 
 urlpatterns = [
     path('', views.DashboardView.as_view(), name='dashboard'),
+    path('todo/list/', views.TodoListView.as_view(), name='todo'),
 ]
