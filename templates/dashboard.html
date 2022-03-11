@@ -86,6 +86,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        {% for obj in todo_list %}
                         <ul class="todo-list" data-widget="todo-list">
                             <li>
                                 <span class="handle">
@@ -93,21 +94,26 @@
                                     <i class="fas fa-ellipsis-v"></i>
                                 </span>
                                 <div class="icheck-primary d-inline ml-2">
-                                    <input type="checkbox" value="" name="todo2" id="todoCheck2" checked>
+                                    <input type="checkbox"
+                                        value="" name="todo2"
+                                        id="todoCheck2" {% if obj.is_completed %} checked {% endif %}>
                                     <label for="todoCheck2"></label>
                                 </div>
-                                <span class="text">Make the theme responsive</span>
-                                <small class="badge badge-info"><i class="far fa-clock"></i> 4 hours</small>
+                                <span class="text">{{ obj.name }}</span>
+                                <small class="badge badge-info"><i class="far fa-clock"></i>{{ obj.created_at }}</small>
                                 <div class="tools">
                                     <i class="fas fa-edit"></i>
                                     <i class="fas fa-trash-o"></i>
                                 </div>
                             </li>
                         </ul>
+                        {% endfor %}
                     </div>
+                    {% if request.user.is_superuser %}
                     <div class="card-footer clearfix">
-                        <button type="button" class="btn btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
+                        <button type="button" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
                     </div>
+                    {% endif %}
                 </div>
             </section>
         </div>
