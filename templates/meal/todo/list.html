@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Bordered Table</h3>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 10px;">SL</th>
+                        <th>Task Name</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Progress</th>
+                        <th style="width: 40px;">Label</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ obj.name }}</td>
+                        <td>{% if obj.start_date %}{{ obj.start_date }}{% endif %}</td>
+                        <td>{% if obj.end_date %}{{ obj.end_date }}{% endif %}</td>
+                        <td>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" style="width: 55%;"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-danger">55%</span></td>
+                        <td>
+                            <a href="{% url 'meal:todo_update' obj.pk %}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
