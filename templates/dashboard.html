@@ -101,9 +101,11 @@
                                 </div>
                                 <span class="text">{{ obj.name }}</span>
                                 <small class="badge badge-info"><i class="far fa-clock"></i>{{ obj.created_at|timesince }}</small>
+                                {% if not obj.is_completed %}
                                 <div class="tools">
                                     <a href="{% url 'meal:todo_update' obj.pk %}"><i class="fas fa-edit"></i></a>
                                 </div>
+                                {% endif %}
                             </li>
                         </ul>
                         {% endfor %}
@@ -134,7 +136,9 @@
             'id': id,
         },
         success: function (data) {
-            if (data.status == 'success') {
+            if (data == 'True') {
+                location.reload();
+            } else {
                 location.reload();
             }
         }
