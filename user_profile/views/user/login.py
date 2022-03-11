@@ -26,7 +26,10 @@ class LoginView(View):
                 return redirect('meal:dashboard')
             else:
                 messages.error(request, 'Your account is not active.')
-                return redirect('user:login')
+                context = {
+                    'form': form,
+                }
+                return render(request, self.template_name, context)
         else:
             messages.error(request, "Unsuccessful login Invalid information.")
             context = {
