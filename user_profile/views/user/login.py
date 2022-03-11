@@ -20,9 +20,13 @@ class LoginView(View):
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             user = form.get_user()
-            login(request, user)
-            messages.success(request, 'You have successfully logged in!')
-            return redirect('meal:dashboard')
+            if user.is_active:
+                login(request, user)
+                messages.success(request, 'You have successfully logged in!')
+                return redirect('meal:dashboard')
+            else:
+                messages.error(request, 'Your account is not active.')
+                return redirect('user:login')
         else:
             messages.error(request, "Unsuccessful login Invalid information.")
             context = {

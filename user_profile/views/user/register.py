@@ -19,7 +19,7 @@ class RegisterView(View):
         form = NewUserForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
-            user.is_active = True
+            user.is_active = False
             user.save()
             messages.success(
                 request, '''
