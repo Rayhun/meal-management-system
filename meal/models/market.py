@@ -70,7 +70,7 @@ class NeedItem(models.Model):
     date = models.DateField(null=True, blank=True)
 
     def __str__(self):
-        return self.item.name
+        return f"{self.todo.name} - {self.name}"
 
 
 class Market(AbstractBaseModel):
