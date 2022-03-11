@@ -26,7 +26,7 @@ class RegisterView(View):
                     Your account has been created! You are now able to log in
                     '''
             )
-            return redirect('dashboard')
+            return redirect('user_profile:login')
         else:
             messages.error(
                 request, "Unsuccessful registration. Invalid information."
