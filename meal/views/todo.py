@@ -4,6 +4,7 @@ from django.contrib.auth.mixins import (
 )
 
 from meal.models.market import ToDo
+from meal.forms import ToDoForm
 
 
 class TodoListView(
@@ -26,6 +27,7 @@ class TodoCreateView(
     model = ToDo
     template_name = 'meal/todo/create.html'
     permission_required = 'meal.add_todo'
+    form_class = ToDoForm
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)

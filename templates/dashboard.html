@@ -111,7 +111,7 @@
                     </div>
                     {% if request.user.is_superuser %}
                     <div class="card-footer clearfix">
-                        <button type="button" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i> Add item</button>
+                        <a class="btn btn-sm btn-primary float-right" href="{% url 'meal:todo_create' %}"><i class="fas fa-plus"></i> Add item</a>
                     </div>
                     {% endif %}
                 </div>
