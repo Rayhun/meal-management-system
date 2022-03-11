@@ -1,8 +1,8 @@
-from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import User
 
 from meal.models.abstract import AbstractBaseModel
+
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -21,8 +21,10 @@ class ToDo(AbstractBaseModel):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
-    description = models.TextField(blank=True, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True, blank=True
+    )
+    description = models.TextField(blank=True)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
@@ -61,7 +63,7 @@ class Market(AbstractBaseModel):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=255)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(blank=True)
     item = models.ForeignKey(
         Item, on_delete=models.SET_NULL, null=True
     )
