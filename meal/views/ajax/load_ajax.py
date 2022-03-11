@@ -1,6 +1,7 @@
 from django.shortcuts import HttpResponse
 from meal.models import ToDo
 
+
 def load_ajax(request):
     """
     Load ajax view.
@@ -14,6 +15,6 @@ def load_ajax(request):
             todo.is_completed = True
         todo.save()
     except Exception as e:
+        print(e)
         todo = None
     return HttpResponse(todo.is_completed)
-    
