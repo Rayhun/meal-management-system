@@ -120,3 +120,27 @@
 </section>
 <!-- /.content -->
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function () {
+        $(".todoCheck2").click(function() {
+    var id = $(this).val();
+
+    $.ajax({
+        url: "{% url 'meal:todo_load' %}",
+        type: "GET",
+        data: {
+            'id': id,
+        },
+        success: function (data) {
+            if (data.status == 'success') {
+                location.reload();
+            }
+        }
+    });
+}
+);
+    });
+</script>
+{% endblock extra_js %}

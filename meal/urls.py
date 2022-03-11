@@ -2,6 +2,7 @@ from django.urls import path
 
 # local imports
 from meal import views
+from meal.views.ajax import load_ajax
 app_name = 'meal'
 
 urlpatterns = [
@@ -11,5 +12,9 @@ urlpatterns = [
     path(
         'todo/update/<int:pk>/', views.TodoUpdateView.as_view(),
         name='todo_update'
+    ),
+    # ajax load
+    path(
+        'todo/load/', load_ajax, name='todo_load'
     ),
 ]
