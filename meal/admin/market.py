@@ -1,5 +1,5 @@
 from django.contrib import admin
-from meal.models import ToDo, Category
+from meal.models import ToDo, Category, NeedItem
 
 
 @admin.register(ToDo)
@@ -15,3 +15,9 @@ class ToDoAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'description']
     search_fields = ['name', 'description']
+
+
+@admin.register(NeedItem)
+class NeedItemAdmin(admin.ModelAdmin):
+    list_display = ['todo' ,'name', 'date']
+    search_fields = ['name']
