@@ -34,7 +34,7 @@ class TodoCreateView(
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
-    
+
     def form_valid(self, form):
         """ Set the user to the current user """
         form.instance.created_user = self.request.user
