@@ -8,4 +8,8 @@ urlpatterns = [
     path('', views.DashboardView.as_view(), name='dashboard'),
     path('todo/list/', views.TodoListView.as_view(), name='todo'),
     path('todo/create/', views.TodoCreateView.as_view(), name='todo_create'),
+    path(
+        'todo/update/<int:pk>/', views.TodoUpdateView.as_view(),
+        name='todo_update'
+    ),
 ]

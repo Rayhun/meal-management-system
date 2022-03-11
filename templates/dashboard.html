@@ -102,8 +102,7 @@
                                 <span class="text">{{ obj.name }}</span>
                                 <small class="badge badge-info"><i class="far fa-clock"></i>{{ obj.created_at }}</small>
                                 <div class="tools">
-                                    <i class="fas fa-edit"></i>
-                                    <i class="fas fa-trash-o"></i>
+                                    <a href="{% url 'meal:todo_update' obj.pk %}"><i class="fas fa-edit"></i></a>
                                 </div>
                             </li>
                         </ul>

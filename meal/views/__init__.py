@@ -1,7 +1,7 @@
 from .dashboard import DashboardView
-from .todo import TodoListView, TodoCreateView
+from .todo import TodoListView, TodoCreateView, TodoUpdateView
 
 
 __all__ = [
-    'DashboardView', 'TodoListView', 'TodoCreateView'
+    'DashboardView', 'TodoListView', 'TodoCreateView', 'TodoUpdateView'
 ]

@@ -1,4 +1,4 @@
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, CreateView, UpdateView
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 )
@@ -38,4 +38,24 @@ class TodoCreateView(
     def form_valid(self, form):
         """ Set the user to the current user """
         form.instance.created_user = self.request.user
+        return super().form_valid(form)
+
+
+class TodoUpdateView(
+    LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin,
+    UpdateView
+):
+    """ View for updating a todo """
+    model = ToDo
+    template_name = 'meal/todo/create.html'
+    permission_required = 'meal.change_todo'
+    form_class = ToDoForm
+    success_url = reverse_lazy('meal:dashboard')
+
+    def test_func(self):
+        return self.request.user.has_perm(self.permission_required)
+
+    def form_valid(self, form):
+        """ Set the user to the current user """
+        form.instance.updated_user = self.request.user
         return super().form_valid(form)
