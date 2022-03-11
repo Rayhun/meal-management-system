@@ -29,6 +29,19 @@ class ToDo(AbstractBaseModel):
     end_date = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
 
+    @property
+    def progres(self):
+        """
+        Return the progress of the todo in percent.
+        """
+        todo = ToDo.objects.filter(
+            user=self.user, is_completed=False,
+            start_date__lte=self.start_date, end_date__gte=self.end_date
+        )
+        a = todo.count()
+        print(a)
+        return 0
+
     def __str__(self):
         return self.name
 
@@ -49,6 +62,9 @@ class NeedItem(models.Model):
     """
     NeedItem model.
     """
+    todo = models.ForeignKey(
+        ToDo, on_delete=models.SET_NULL, null=True, related_name='need_items'
+    )
     name = models.CharField(max_length=255)
     quantity = models.CharField(max_length=255)
     date = models.DateField(null=True, blank=True)

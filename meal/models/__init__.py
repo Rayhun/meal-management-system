@@ -1,6 +1,6 @@
-from .market import ToDo, Category
+from .market import ToDo, Category, NeedItem
 
 
 __all__ = [
-    'ToDo', 'Category',
+    'ToDo', 'Category', 'NeedItem'
 ]
