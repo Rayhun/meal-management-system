@@ -41,13 +41,16 @@
                                                     {{ form.id }}
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         {{ form.name|as_crispy_field }}
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
                                                         {{ form.quantity|as_crispy_field }}
                                                     </div>
-                                                    <div class="col-md-4">
+                                                    <div class="col-md-6">
+                                                        {{ form.quantity_type|as_crispy_field }}
+                                                    </div>
+                                                    <div class="col-md-6">
                                                         {{ form.date|as_crispy_field }}
                                                     </div>
                                                 </div>

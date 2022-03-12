@@ -33,12 +33,13 @@ class NeedItemForm(forms.ModelForm):
     class Meta:
         model = NeedItem
         fields = [
-            'name', 'quantity', 'date'
+            'name', 'quantity', 'date', 'quantity_type'
         ]
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'quantity': forms.TextInput(attrs={'class': 'form-control'}),
+            'quantity_type': forms.Select(attrs={'class': 'form-control'}),
             'date': forms.TextInput(attrs={
                 'class': 'form-control', 'type': 'date'
             }),
