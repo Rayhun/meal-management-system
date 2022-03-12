@@ -14,30 +14,32 @@
             </div>
         </div>
         <div class="card-body">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="width: 10px;">SL</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for obj in object_list %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>{{ obj.date }}</td>
-                        <td>{{ obj.price }}</td>
-                        <td>
+            {% for obj in object_list %}
+                <div class="card-head border my-1 p-1">
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ obj.date|date:"d-m-Y" }}
+                        </div>
+                        <div class="col-md-6 text-right">
                             <a href="{% url 'meal:todo_update' obj.pk %}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+                        </div>
+                    </div>
+                    <table class="table mt-3">
+                        <tbody>
+                            {% for obj in obj.item_set.all %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ obj.name }}</td>
+                                <td>{{ obj.quantity }}</td>
+                                <td>{{ obj.price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
         </div>
     </div>
 </div>
