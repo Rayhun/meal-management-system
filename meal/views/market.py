@@ -1,3 +1,4 @@
+from datetime import date
 from django.views.generic import (
     ListView, View, UpdateView, DetailView
 )
@@ -54,7 +55,10 @@ class MarketCreateView(
             prefix='formset'
         )
         if formset.is_valid():
-            obj = self.model.objects.create(user=request.user)
+            obj = self.model.objects.create(
+                user=request.user,
+                date=date.today()
+            )
             formsets = formset.save(commit=False)
             for obj in formset.deleted_objects:
                 obj.delete()

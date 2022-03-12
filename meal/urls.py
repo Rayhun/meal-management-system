@@ -20,6 +20,10 @@ urlpatterns = [
     ),
     # Market
     path(
+        'market/list/', views.MarketListView.as_view(),
+        name='market_list'
+    ),
+    path(
         'market/create/', views.MarketCreateView.as_view(),
         name='market_create'
     ),

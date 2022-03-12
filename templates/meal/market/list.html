@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="card-title">Market List</h3>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a class="btn btn-sm btn-primary" href="{% url 'meal:market_create' %}"><i class="fas fa-plus-square"></i> Create Todo</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 10px;">SL</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ obj.date }}</td>
+                        <td>{{ obj.price }}</td>
+                        <td>
+                            <a href="{% url 'meal:todo_update' obj.pk %}" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
