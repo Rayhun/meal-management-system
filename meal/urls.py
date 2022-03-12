@@ -2,7 +2,7 @@ from django.urls import path
 
 # local imports
 from meal import views
-from meal.views.ajax import load_ajax
+from meal.views.ajax import load_ajax, need_item_load_ajax
 app_name = 'meal'
 
 urlpatterns = [
@@ -20,5 +20,8 @@ urlpatterns = [
     # ajax load
     path(
         'todo/load/', load_ajax, name='todo_load'
+    ),
+    path(
+        'need/item/load/', need_item_load_ajax, name='need_item_load'
     ),
 ]

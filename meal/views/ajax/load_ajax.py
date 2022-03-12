@@ -1,5 +1,5 @@
 from django.shortcuts import HttpResponse
-from meal.models import ToDo
+from meal.models import ToDo, NeedItem
 
 
 def load_ajax(request):
@@ -18,3 +18,21 @@ def load_ajax(request):
         print(e)
         todo = None
     return HttpResponse(todo.is_completed)
+
+
+def need_item_load_ajax(request):
+    """
+    Load ajax view.
+    """
+    id = request.GET.get('id')
+    try:
+        item = NeedItem.objects.get(id=id)
+        if item.status:
+            item.status = False
+        else:
+            item.status = True
+        item.save()
+    except Exception as e:
+        print(e)
+        item = None
+    return HttpResponse(item.status)

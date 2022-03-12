@@ -49,9 +49,9 @@
                                     <h5>Iten Name: {{ obj.name }}</h5>
                                 <span>Need Date: {{ obj.date|date:"d-m-Y" }}</span>
                                 <span>Quantity: {{ obj.quantity }} {{ obj.quantity_type }}</span>
-                                <span>Status: {% if  obj.status %}
-                                    <button class="btn btn-sm btn-success p-1">Complete</button>
-                                    {% else %} <button type="button" class="btn btn-sm btn-danger mt-2" style="padding: 0 7px;">Need</button>
+                                <span class="mt-2">Status: {% if  obj.status %}
+                                    <button class="btn btn-sm btn-success" style="padding: 0 7px;">Complete</button>
+                                    {% else %} <button type="button" class="btn btn-sm btn-danger todoCheck2" value="{{ obj.pk }}" style="padding: 0 7px;">Need</button>
                                     {% endif %}</span>
                                 </div>
                             </div>
@@ -65,3 +65,31 @@
 </div>
 
 {% endblock content %}
+
+{% block extra_js %}
+<script>
+
+$(document).ready(function () {
+        $(".todoCheck2").click(function() {
+    var id = $(this).val();
+
+    $.ajax({
+        url: "{% url 'meal:need_item_load' %}",
+        type: "GET",
+        data: {
+            'id': id,
+        },
+        success: function (data) {
+            if (data == 'True') {
+                location.reload();
+            } else {
+                location.reload();
+            }
+        }
+    });
+}
+);
+    });
+
+</script>
+{% endblock extra_js %}
