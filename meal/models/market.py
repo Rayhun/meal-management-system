@@ -60,6 +60,13 @@ class Item(AbstractBaseModel):
         return self.name
 
 
+class QuantityType(models.Model):
+    type_name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.type_name
+
+
 class NeedItem(models.Model):
     """
     NeedItem model.
@@ -73,6 +80,10 @@ class NeedItem(models.Model):
     )
     name = models.CharField(max_length=255)
     quantity = models.CharField(max_length=255)
+    quantity_type = models.ForeignKey(
+        QuantityType, on_delete=models.SET_NULL,
+        null=True
+    )
     date = models.DateField(null=True, blank=True)
     status = models.BooleanField(default=False)
 
