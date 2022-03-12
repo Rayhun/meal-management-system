@@ -1,3 +1,5 @@
+from datetime import date
+from os import stat
 from django.views.generic import (
     ListView, CreateView, UpdateView, DetailView
 )
@@ -148,6 +150,27 @@ class TodoDetailView(
 
     def get_queryset(self):
         return self.model.objects.filter(user=self.request.user)
+    
+    def get_context_data(self, **kwargs):
+        """ Add the formset to the context """
+        context = super().get_context_data(**kwargs)
+        context['need_item_list'] = NeedItem.objects.filter(
+            todo=self.object, todo__start_date__lte=date.today(),
+            todo__end_date__gte=date.today()
+        )
+        context['total_need'] = NeedItem.objects.filter(
+            todo=self.object, todo__start_date__lte=date.today(),
+            todo__end_date__gte=date.today()
+        ).count()
+        context['total_complete'] = NeedItem.objects.filter(
+            todo=self.object, todo__start_date__lte=date.today(),
+            todo__end_date__gte=date.today(), status=True
+        ).count()
+        context['total_incomplete'] = NeedItem.objects.filter(
+            todo=self.object, todo__start_date__lte=date.today(),
+            todo__end_date__gte=date.today(), status=False
+        ).count()
+        return context
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
