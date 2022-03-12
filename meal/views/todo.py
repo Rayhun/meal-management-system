@@ -86,7 +86,7 @@ class TodoUpdateView(
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
-    
+
     def get_context_data(self, **kwargs):
         """ Add the formset to the context """
         context = super().get_context_data(**kwargs)
@@ -95,7 +95,7 @@ class TodoUpdateView(
             prefix='need_item'
         )
         return context
-    
+
     def post(self, request, *args, **kwargs):
         """ Handle the post request """
         self.object = self.get_object()
