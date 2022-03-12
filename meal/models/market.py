@@ -68,9 +68,14 @@ class NeedItem(models.Model):
     todo = models.ForeignKey(
         ToDo, on_delete=models.SET_NULL, null=True, related_name='need_items'
     )
+    item = models.ForeignKey(
+        Item, on_delete=models.SET_NULL, null=True,
+        related_name='items'
+    )
     name = models.CharField(max_length=255)
     quantity = models.CharField(max_length=255)
     date = models.DateField(null=True, blank=True)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.todo.name} - {self.name}"
