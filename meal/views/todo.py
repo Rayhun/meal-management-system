@@ -86,6 +86,45 @@ class TodoUpdateView(
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
+    
+    def get_context_data(self, **kwargs):
+        """ Add the formset to the context """
+        context = super().get_context_data(**kwargs)
+        context['formset'] = NeedItemFormSet(
+            queryset=NeedItem.objects.filter(todo=self.object),
+            prefix='need_item'
+        )
+        return context
+    
+    def post(self, request, *args, **kwargs):
+        """ Handle the post request """
+        self.object = self.get_object()
+        form = self.get_form()
+        formset = NeedItemFormSet(
+            self.request.POST, queryset=NeedItem.objects.filter(
+                todo=self.object
+            ), prefix='need_item'
+        )
+        if form.is_valid() and formset.is_valid():
+            form = form.save(commit=False)
+            form.updated_user = self.request.user
+            form.save()
+            need_item = formset.save(commit=False)
+            # Delete Object
+            for obj in formset.deleted_objects:
+                obj.delete()
+            # Need Item Create
+            for item in need_item:
+                item.todo = form
+                item.updated_user = self.request.user
+                item.save()
+            return redirect(self.success_url)
+        else:
+            context = {
+                'form': form,
+                'formset': formset,
+            }
+            return render(request, self.template_name, context)
 
     def form_valid(self, form):
         """ Set the user to the current user """

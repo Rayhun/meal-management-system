@@ -4,7 +4,14 @@
 <div class="col-md-12">
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">Bordered Table</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="card-title">ToDo List</h3>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a class="btn btn-sm btn-primary" href="{% url 'meal:todo_create' %}"><i class="fas fa-plus-square"></i> Create Todo</a>
+                </div>
+            </div>
         </div>
         <div class="card-body">
             <table class="table table-bordered">
@@ -14,6 +21,7 @@
                         <th>Task Name</th>
                         <th>Start Date</th>
                         <th>End Date</th>
+                        <th>Status</th>
                         <th>Progress</th>
                         <th style="width: 40px;">Label</th>
                         <th>Action</th>
@@ -24,8 +32,9 @@
                     <tr>
                         <td>{{ forloop.counter }}</td>
                         <td>{{ obj.name }}</td>
-                        <td>{% if obj.start_date %}{{ obj.start_date }}{% endif %}</td>
-                        <td>{% if obj.end_date %}{{ obj.end_date }}{% endif %}</td>
+                        <td>{% if obj.start_date %}{{ obj.start_date|date:"d-m-Y" }}{% endif %}</td>
+                        <td>{% if obj.end_date %}{{ obj.end_date|date:"d-m-Y" }}{% endif %}</td>
+                        <td>{% if obj.is_complite %}Yes{% else %}No{% endif %}</td>
                         <td>
                             <div class="progress progress-xs">
                                 <div class="progress-bar progress-bar-danger" style="width: 5%;"></div>
