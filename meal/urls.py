@@ -7,6 +7,7 @@ app_name = 'meal'
 
 urlpatterns = [
     path('', views.DashboardView.as_view(), name='dashboard'),
+    # ToDo
     path('todo/list/', views.TodoListView.as_view(), name='todo'),
     path('todo/create/', views.TodoCreateView.as_view(), name='todo_create'),
     path(
@@ -16,6 +17,11 @@ urlpatterns = [
     path(
         'todo/details/<int:pk>/', views.TodoDetailView.as_view(),
         name='todo_details'
+    ),
+    # Market
+    path(
+        'market/create/', views.MarketCreateView.as_view(),
+        name='market_create'
     ),
     # ajax load
     path(
