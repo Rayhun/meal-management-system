@@ -13,6 +13,10 @@ urlpatterns = [
         'todo/update/<int:pk>/', views.TodoUpdateView.as_view(),
         name='todo_update'
     ),
+    path(
+        'todo/details/<int:pk>/', views.TodoDetailView.as_view(),
+        name='todo_details'
+    ),
     # ajax load
     path(
         'todo/load/', load_ajax, name='todo_load'

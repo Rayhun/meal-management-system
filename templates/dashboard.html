@@ -104,6 +104,7 @@
                                 {% if not obj.is_completed %}
                                 <div class="tools">
                                     <a href="{% url 'meal:todo_update' obj.pk %}"><i class="fas fa-edit"></i></a>
+                                    <a href="{% url 'meal:todo_details' obj.pk %}"><i class="fas fa-eye"></i></a>
                                 </div>
                                 {% endif %}
                             </li>
