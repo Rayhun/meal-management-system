@@ -27,6 +27,10 @@ urlpatterns = [
         'market/create/', views.MarketCreateView.as_view(),
         name='market_create'
     ),
+    path(
+        'market/<int:pk>/update/', views.MarketUpdateView.as_view(),
+        name='market_update'
+    ),
     # ajax load
     path(
         'todo/load/', load_ajax, name='todo_load'

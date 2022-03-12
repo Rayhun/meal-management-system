@@ -9,7 +9,7 @@
                     <h3 class="card-title">Market List</h3>
                 </div>
                 <div class="col-md-6 text-right">
-                    <a class="btn btn-sm btn-primary" href="{% url 'meal:market_create' %}"><i class="fas fa-plus-square"></i> Create Todo</a>
+                    <a class="btn btn-sm btn-primary" href="{% url 'meal:market_create' %}"><i class="fas fa-plus-square"></i> Add Market</a>
                 </div>
             </div>
         </div>
@@ -21,12 +21,20 @@
                             {{ obj.date|date:"d-m-Y" }}
                         </div>
                         <div class="col-md-6 text-right">
-                            <a href="{% url 'meal:todo_update' obj.pk %}" class="btn btn-sm btn-primary">
+                            <a href="{% url 'meal:market_update' obj.pk %}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </div>
                     </div>
                     <table class="table mt-3">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Item Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
                         <tbody>
                             {% for obj in obj.item_set.all %}
                             <tr>

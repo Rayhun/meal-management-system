@@ -3,11 +3,12 @@ from .todo import (
     TodoListView, TodoCreateView, TodoUpdateView, TodoDetailView
 )
 from .market import (
-    MarketCreateView, MarketListView
+    MarketCreateView, MarketListView, MarketUpdateView
 )
 
 
 __all__ = [
     'DashboardView', 'TodoListView', 'TodoCreateView', 'TodoUpdateView',
-    'TodoDetailView', 'MarketCreateView', 'MarketListView'
+    'TodoDetailView', 'MarketCreateView', 'MarketListView',
+    'MarketUpdateView'
 ]

@@ -1,6 +1,6 @@
 from datetime import date
 from django.views.generic import (
-    ListView, View, UpdateView, DetailView
+    ListView, View, DetailView
 )
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
@@ -64,6 +64,50 @@ class MarketCreateView(
                 obj.delete()
             for form in formsets:
                 form.item = obj
+                form.save()
+            return redirect(self.success_url)
+        return render(request, self.template_name, {'formset': formset})
+
+
+class MarketUpdateView(
+    LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin,
+    View
+):
+    """ View for updating a new market """
+    model = Market
+    template_name = 'meal/market/create.html'
+    permission_required = 'meal.change_market'
+    success_url = reverse_lazy('meal:market_list')
+
+    def test_func(self):
+        return self.request.user.has_perm(self.permission_required)
+
+    def get(self, request, pk):
+        """ Handle the get request """
+        print(pk, "*")
+        item = Market.objects.get(pk=pk)
+        formset = ItemFormSet(
+            queryset=Item.objects.filter(
+                item=item
+            ), prefix='formset'
+        )
+        return render(request, self.template_name, {'formset': formset})
+
+    def post(self, request, *args, **kwargs):
+        """ Handle the post request """
+        item = Market.objects.get(pk=self.kwargs['pk'])
+        formset = ItemFormSet(
+            self.request.POST, queryset=Item.objects.filter(
+                item=item
+            ),
+            prefix='formset'
+        )
+        if formset.is_valid():
+            formsets = formset.save(commit=False)
+            for obj in formset.deleted_objects:
+                obj.delete()
+            for form in formsets:
+                form.item = item
                 form.save()
             return redirect(self.success_url)
         return render(request, self.template_name, {'formset': formset})
