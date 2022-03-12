@@ -18,6 +18,9 @@ class TodoListView(
     context_object_name = 'todos'
     permission_required = 'meal.view_todo'
 
+    def get_queryset(self):
+        return self.model.objects.filter(user=self.request.user)
+
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
 

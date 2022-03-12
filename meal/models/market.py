@@ -34,12 +34,15 @@ class ToDo(AbstractBaseModel):
         """
         Return the progress of the todo in percent.
         """
+        need_item = NeedItem.objects.filter(
+            todo=self, todo__is_completed=False
+        ).count()
+        print(need_item, "*" * 50)
         todo = ToDo.objects.filter(
             user=self.user, is_completed=False,
             start_date__lte=self.start_date, end_date__gte=self.end_date
         )
         a = todo.count()
-        print(a)
         return 0
 
     def __str__(self):
