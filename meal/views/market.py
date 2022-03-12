@@ -1,6 +1,6 @@
 from datetime import date
 from django.views.generic import (
-    ListView, View, DetailView
+    ListView, View
 )
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin

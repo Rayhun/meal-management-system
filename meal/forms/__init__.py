@@ -3,5 +3,5 @@ from .market import ItemFormSet
 
 
 __all__ = [
-    ToDoForm, NeedItemFormSet
+    ToDoForm, NeedItemFormSet, ItemFormSet
 ]

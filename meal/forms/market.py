@@ -1,6 +1,6 @@
 from django import forms
 
-from meal.models.market import Market, Item
+from meal.models.market import Item
 
 
 class ItemForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['name', 'quantity', 'price']
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'form-control'})
