@@ -26,7 +26,7 @@ class ProfileForm(forms.ModelForm):
             ),
             'address': forms.Textarea(
                 attrs={
-                    'rows': '3',
+                    'rows': '1',
                     'class': 'form-control'
                 }
             ),
@@ -40,10 +40,23 @@ class EducationForm(forms.ModelForm):
     class Meta:
         model = Education
         fields = [
-            'result', 'university', 'start_date', 'end_date', 'description'
+            'result', 'university', 'start_date', 'end_date', 'description',
+            'degree', 'subject'
         ]
 
         widgets = {
+            'subject': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter subject'
+                }
+            ),
+            'degree': forms.TextInput(
+                attrs={
+                    'class': 'form-control',
+                    'placeholder': 'Enter degree'
+                }
+            ),
             'result': forms.TextInput(
                 attrs={
                     'class': 'form-control',
@@ -69,7 +82,7 @@ class EducationForm(forms.ModelForm):
             ),
             'description': forms.Textarea(
                 attrs={
-                    'rows': '3',
+                    'rows': '1',
                     'class': 'form-control'
                 }
             ),
@@ -92,7 +105,7 @@ class SkillForm(forms.ModelForm):
     """
     class Meta:
         model = Skill
-        fields = ['name', 'start_date', 'end_date', 'description']
+        fields = ['name', 'type']
 
         widgets = {
             'name': forms.TextInput(
@@ -101,22 +114,9 @@ class SkillForm(forms.ModelForm):
                     'placeholder': 'Enter Name'
                 }
             ),
-            'start_date': forms.TextInput(
+            'type': forms.Select(
                 attrs={
                     'class': 'form-control',
-                    'type': 'date'
-                }
-            ),
-            'end_date': forms.NumberInput(
-                attrs={
-                    'class': 'form-control',
-                    'type': 'date'
-                }
-            ),
-            'description': forms.Textarea(
-                attrs={
-                    'rows': '3',
-                    'class': 'form-control'
                 }
             ),
         }

@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, UserPassesTestMixin
 )
+from django.shortcuts import render
 from user_profile.models.profile import Profile, Education, Skill
 from user_profile.forms.profile import (
     ProfileForm, EducationFormSet,
@@ -86,7 +87,12 @@ class ProfileUpdateView(
                 forms.profile = self.object
                 forms.save()
             return self.form_valid(form)
-
+        else:
+            return render(request, self.template_name, {
+                'form': form,
+                'formset': formset,
+                'skill_form': skill_formset,
+            })
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)

@@ -7,6 +7,28 @@
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Update Profile</h3>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+                    {% endfor %}
+                {% endif %}
+                {% if form.errors %}
+                <div class="alert alert-error">
+                <h4>Please fix the following errors</h4>
+                <ul>
+                    {% for field in form %}
+                    {% if field.errors %}
+                        {% for error in field.errors %}
+                        <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+                        {% endfor %}
+                    {% endif %}
+                    {% endfor %}
+                </ul>
+                {% if form.non_field_errors %}
+                    {{ form.non_field_errors }}
+                {% endif %}
+                </div>
+            {% endif %}
             </div>
             <form id="quickForm" novalidate="novalidate" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -19,25 +41,32 @@
                         {{ formset.non_form_errors }}
                         <div class="card mt-4">
                             <div class="card-body px-4 py-2">
+                                <h4>Add Edication</h4>
                                 {% for form in formset %}
                                         <div class="row inline {{ formset.prefix }} upazila_section card p-3">
                                             <div class="col-md-0 counter">
                                                 {{ form.id }}
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
+                                                    {{ form.degree|as_crispy_field }}
+                                                </div>
+                                                <div class="col-md-3">
+                                                    {{ form.subject|as_crispy_field }}
+                                                </div>
+                                                <div class="col-md-3">
                                                     {{ form.result|as_crispy_field }}
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     {{ form.university|as_crispy_field }}
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     {{ form.start_date|as_crispy_field }}
                                                 </div>
-                                                <div class="col-md-6">
+                                                <div class="col-md-3">
                                                     {{ form.end_date|as_crispy_field }}
                                                 </div>
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     {{ form.description|as_crispy_field }}
                                                 </div>
                                             </div>
@@ -58,31 +87,26 @@
                         {{ skill_form.non_form_errors }}
                         <div class="card mt-4">
                             <div class="card-body px-4 py-2">
+                                <h4>Add Skills</h4>
                                 {% for form in skill_form %}
-                                        <div class="row inline {{ skill_form.prefix }} upazila_section card p-3">
-                                            <div class="col-md-0 counter">
-                                                {{ form.id }}
+                                    <div class="row inline {{ skill_form.prefix }} upazila_section card p-3">
+                                        <div class="col-md-0 counter">
+                                            {{ form.id }}
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                {{ form.name|as_crispy_field }}
                                             </div>
-                                            <div class="row">
-                                                <div class="col-md-4">
-                                                    {{ form.name|as_crispy_field }}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    {{ form.start_date|as_crispy_field }}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    {{ form.end_date|as_crispy_field }}
-                                                </div>
-                                                <div class="col-md-12">
-                                                    {{ form.description|as_crispy_field }}
-                                                </div>
-                                            </div>
-                                            <div style="display: contents;" class="col-md-4">
-                                                {% if skill_form.can_delete %}
-                                                    {{ form.DELETE }}
-                                                {% endif %}
+                                            <div class="col-md-6">
+                                                {{ form.type|as_crispy_field }}
                                             </div>
                                         </div>
+                                        <div style="display: contents;" class="col-md-4">
+                                            {% if skill_form.can_delete %}
+                                                {{ form.DELETE }}
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             </div>
                         </div>
