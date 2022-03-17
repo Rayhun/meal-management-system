@@ -1,5 +1,4 @@
 # django import
-from math import degrees
 from django.db import models
 
 # local import

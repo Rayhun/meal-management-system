@@ -93,6 +93,7 @@ class ProfileUpdateView(
                 'formset': formset,
                 'skill_form': skill_formset,
             })
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
