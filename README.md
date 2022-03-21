@@ -1,4 +1,7 @@
 # meal-management-system
+
+![image](https://user-images.githubusercontent.com/49088060/159311254-89727cfa-8fa2-41f0-940a-fab47c09cbc9.png)
+
 <h3>Step: 1</h3>
 Git clone first:
 <ul>
