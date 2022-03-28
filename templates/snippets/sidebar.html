@@ -83,9 +83,9 @@
                         </li>
                     </ul>
                     <ul class="nav nav-treeview" style="display: none;">
-                        {% url 'meal:market_list' as market %}
+                        {% url 'meal:deposet_list' as list %}
                         <li class="nav-item">
-                            <a href="{{ market }}" class="nav-link {% if market == request.path %}active{% endif %}">
+                            <a href="{{ list }}" class="nav-link {% if list == request.path %}active{% endif %}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Deposet List</p>
                             </a>

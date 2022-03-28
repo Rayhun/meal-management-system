@@ -1,0 +1,44 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="card-title">Deposet List</h3>
+                </div>
+                <div class="col-md-6 text-right">
+                    <a class="btn btn-sm btn-primary" href="{% url 'meal:deposet_create' %}"><i class="fas fa-plus-square"></i> Add Deposet</a>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th style="width: 10px;">SL</th>
+                        <th>Task Name</th>
+                        <th>Start Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for obj in object_list %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ obj.amount }}</td>
+                        <td>{% if obj.created_at %}{{ obj.created_at|date:"d-m-Y" }}{% endif %}</td>
+                        <td>
+                            <a href="" class="btn btn-sm btn-primary">
+                                <i class="fas fa-edit"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

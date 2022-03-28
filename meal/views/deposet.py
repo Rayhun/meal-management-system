@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # local import
@@ -34,3 +34,14 @@ class DeposetCerateView(
                 'object': self.object
             }
             return render(request, self.template_name, context)
+
+
+class DeposetListView(
+    LoginRequiredMixin, UserPassesTestMixin, ListView
+):
+    """ Deposet List """
+    model = Deposet
+    template_name = "deposet/list.html"
+
+    def test_func(self):
+        return self.request.user.has_perm(self.permission_required)

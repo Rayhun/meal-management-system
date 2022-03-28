@@ -44,7 +44,7 @@ urlpatterns = [
         name="deposet_create"
     ),
     path(
-        'deposet/list', views.DeposetCerateView.as_view(),
+        'deposet/list', views.DeposetListView.as_view(),
         name="deposet_list"
     )
 ]
