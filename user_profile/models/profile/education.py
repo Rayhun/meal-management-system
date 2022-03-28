@@ -24,8 +24,8 @@ class Education(AbstractBaseModel):
         Profile, on_delete=models.CASCADE, blank=True, null=True,
         related_name="education"
     )
-    degree = models.CharField(max_length=255, null=True)
-    subject = models.CharField(max_length=255, null=True)
+    degree = models.CharField(max_length=255)
+    subject = models.CharField(max_length=255)
     result = models.CharField(max_length=255, blank=True)
     university = models.ForeignKey(
         University, on_delete=models.SET_NULL, blank=True, null=True
@@ -45,7 +45,7 @@ class Skill(AbstractBaseModel):
 
     SKILL = (
         ('1', 'Beginner'),
-        ('2', 'Intermediate'),  
+        ('2', 'Intermediate'),
         ('3', 'Advanced'),
     )
 
@@ -54,7 +54,7 @@ class Skill(AbstractBaseModel):
     )
     name = models.CharField(max_length=255, blank=True)
     type = models.CharField(
-        choices=SKILL, null=True, default="3", max_length=1
+        choices=SKILL, default="3", max_length=1
     )
 
     def __str__(self):
