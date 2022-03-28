@@ -1,6 +1,5 @@
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from meal import models
 
 # local import
 from meal.models import Deposet
@@ -18,4 +17,3 @@ class DeposetCerateView(
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
-

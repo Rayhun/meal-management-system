@@ -1,4 +1,3 @@
-from dataclasses import fields
 from django import forms
 
 # local import
@@ -10,7 +9,7 @@ class DeposetForm(forms.ModelForm):
     class Meta:
         model = Deposet
         fields = ['amount']
-    
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['amount'].widget.attrs.update(
