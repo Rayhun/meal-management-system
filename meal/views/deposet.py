@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, ListView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # local import
@@ -34,6 +34,20 @@ class DeposetCerateView(
                 'form': form,
             }
             return render(request, self.template_name, context)
+
+
+class DeposetUpdateView(
+    LoginRequiredMixin, UserPassesTestMixin, UpdateView
+):
+    """ Creat6e Deposet """
+    model = Deposet
+    template_name = "deposet/create.html"
+    form_class = DeposetForm
+    permission_required = 'meal.add_deposet'
+    success_url = reverse_lazy("meal:deposet_list")
+
+    def test_func(self):
+        return self.request.user.has_perm(self.permission_required)
 
 
 class DeposetListView(

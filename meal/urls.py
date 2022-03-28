@@ -40,8 +40,12 @@ urlpatterns = [
     ),
     # Deposet
     path(
-        'deposet/create', views.DeposetCerateView.as_view(),
+        'deposet/create/', views.DeposetCerateView.as_view(),
         name="deposet_create"
+    ),
+    path(
+        'deposet/<int:pk>/update/', views.DeposetUpdateView.as_view(),
+        name="deposet_update"
     ),
     path(
         'deposet/list', views.DeposetListView.as_view(),

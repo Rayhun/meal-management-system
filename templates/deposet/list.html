@@ -30,7 +30,7 @@
                         <td>{{ obj.amount }}</td>
                         <td>{% if obj.created_at %}{{ obj.created_at|date:"d-m-Y" }}{% endif %}</td>
                         <td>
-                            <a href="" class="btn btn-sm btn-primary">
+                            <a href="{% url 'meal:deposet_update' obj.pk %}" class="btn btn-sm btn-primary">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
