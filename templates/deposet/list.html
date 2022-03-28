@@ -27,7 +27,7 @@
                     {% for obj in object_list %}
                     <tr>
                         <td>{{ forloop.counter }}</td>
-                        <td>{{ obj.amount }}</td>
+                        <td align="right">{{ obj.amount }}</td>
                         <td>{% if obj.created_at %}{{ obj.created_at|date:"d-m-Y" }}{% endif %}</td>
                         <td>
                             <a href="{% url 'meal:deposet_update' obj.pk %}" class="btn btn-sm btn-primary">
@@ -37,6 +37,14 @@
                     </tr>
                     {% endfor %}
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Total Deposet: <span class="float-right">{{ total_deposet }}</span></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
