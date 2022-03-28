@@ -62,9 +62,9 @@ class DeposetListView(
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
-    
+
     def get_context_data(self, **kwargs):
-        context = super().get_context_data( **kwargs)
+        context = super().get_context_data(**kwargs)
         context["total_deposet"] = self.model.objects.filter(
             user=self.request.user
         ).aggregate(

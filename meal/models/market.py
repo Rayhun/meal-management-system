@@ -62,6 +62,11 @@ class Item(AbstractBaseModel):
     def __str__(self):
         return self.name
 
+    @property
+    def get_price(self):
+        if self.quantity:
+            return int(self.price) * int(self.quantity)
+
 
 class QuantityType(models.Model):
     type_name = models.CharField(max_length=100)
@@ -105,4 +110,4 @@ class Market(AbstractBaseModel):
     date = models.DateField(blank=True)
 
     def __str__(self):
-        return self.name
+        return self.user.username

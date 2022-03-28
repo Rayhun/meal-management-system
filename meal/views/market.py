@@ -1,7 +1,7 @@
+# python import
 from datetime import date
-from django.views.generic import (
-    ListView, View
-)
+# django import
+from django.views.generic import ListView, View
 from django.contrib.auth.mixins import (
     LoginRequiredMixin, PermissionRequiredMixin, UserPassesTestMixin
 )
