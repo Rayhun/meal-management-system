@@ -1,3 +1,4 @@
+from django.shortcuts import redirect, render
 from django.views.generic import CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
@@ -17,3 +18,19 @@ class DeposetCerateView(
 
     def test_func(self):
         return self.request.user.has_perm(self.permission_required)
+
+    def post(self, request):
+        form = DeposetForm(request.POST)
+        self.object = self.get_object()
+        if form.is_valid():
+            obj = form.save(commit=False)
+            obj.user = request.user
+            obj.is_approved = False
+            obj.save()
+            return redirect("meal:deposet_list")
+        else:
+            context = {
+                'form': form,
+                'object': self.object
+            }
+            return render(request, self.template_name, context)

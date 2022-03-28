@@ -5,7 +5,7 @@ from meal.models.abstract import AbstractBaseModel
 
 
 class Deposet(AbstractBaseModel):
-    uset = models.ForeignKey(
+    user = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True,
         related_name="user_deposet"
     )
