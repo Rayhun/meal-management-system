@@ -1,3 +1,4 @@
+from unicodedata import name
 from django.urls import path
 
 # local imports
@@ -38,4 +39,6 @@ urlpatterns = [
     path(
         'need/item/load/', need_item_load_ajax, name='need_item_load'
     ),
+    # Deposet
+    path('deposet/create', views.DeposetCerateView.as_view(), name="deposet_create")
 ]

@@ -65,6 +65,33 @@
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="fas fa-money-check-alt"></i>
+                        <p>
+                            Deposet
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        {% url 'meal:deposet_create' as deposet %}
+                        <li class="nav-item">
+                            <a href="{{ deposet }}" class="nav-link {% if deposet == request.path %}active{% endif %}">
+                                <i class="fas fa-plus nav-icon"></i>
+                                <p>Deposet</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview" style="display: none;">
+                        {% url 'meal:market_list' as market %}
+                        <li class="nav-item">
+                            <a href="{{ market }}" class="nav-link {% if market == request.path %}active{% endif %}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Deposet List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

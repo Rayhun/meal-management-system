@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<div class="card m-4">
+    <div class="card-body">
+        <h4>{% if object %}Update this {% else %}Create a new{% endif %} <b class="text-primary">Deposet</b></h4>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-12">
+                    {{ form.amount|as_crispy_field }}
+                </div>
+                <div class="col-md-6 m-auto">
+                    <button class="btn btn-primary w-100 mt-2" type="submit">{% if object %}Update{% else %}Create{% endif %}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock content %}

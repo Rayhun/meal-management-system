@@ -5,10 +5,11 @@ from .todo import (
 from .market import (
     MarketCreateView, MarketListView, MarketUpdateView
 )
+from .deposet import DeposetCerateView
 
 
 __all__ = [
     'DashboardView', 'TodoListView', 'TodoCreateView', 'TodoUpdateView',
     'TodoDetailView', 'MarketCreateView', 'MarketListView',
-    'MarketUpdateView'
+    'MarketUpdateView', 'DeposetCerateView'
 ]
