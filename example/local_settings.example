@@ -22,9 +22,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'your api_secret'
 }
 
+
 # Default
-def FILE_STORAGE(DEFAULT_FILE_STORAGE=True):
-    if DEFAULT_FILE_STORAGE == True:
-        return 'cloudinary_storage.storage.MediaCloudinaryStorage'
-    else:
-        return False
+FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

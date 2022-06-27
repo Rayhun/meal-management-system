@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-import cloudinary_storage
-from .local_settings import DATABASES, SECRET_KEY, CLOUDINARY_STORAGE, FILE_STORAGE
+from .local_settings import (
+    DATABASES, SECRET_KEY, CLOUDINARY_STORAGE, FILE_STORAGE
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -138,11 +139,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # If you use cloudinary
-''' when you use cloudinary just FILE_STORAGE pass True '''
-CLOUDINARY = FILE_STORAGE(False)
-if CLOUDINARY:
+''' when you use cloudinary just pass True '''
+if True:
     CLOUDINARY_STORAGE = CLOUDINARY_STORAGE
-    DEFAULT_FILE_STORAGE=CLOUDINARY
+    DEFAULT_FILE_STORAGE = FILE_STORAGE
 
 
 # Default primary key field type
