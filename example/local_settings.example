@@ -14,3 +14,17 @@ DATABASES = {
 
 # secret key
 SECRET_KEY = 'django-insecure-uj2gqvtm1y(-%4_xhi73#+#w%mf!^f%4bk9$yuh9el7+u+796z'
+
+# adding config for cloudinary storage
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'Your cloud_name',
+    'API_KEY': 'your api_key',
+    'API_SECRET': 'your api_secret'
+}
+
+# Default
+def FILE_STORAGE(DEFAULT_FILE_STORAGE=True):
+    if DEFAULT_FILE_STORAGE == True:
+        return 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    else:
+        return False

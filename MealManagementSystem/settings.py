@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-# import dj_database_url
-# import django_heroku
-from .local_settings import DATABASES, SECRET_KEY
+import cloudinary_storage
+from .local_settings import DATABASES, SECRET_KEY, CLOUDINARY_STORAGE, FILE_STORAGE
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -52,6 +51,8 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',  # for Google OAuth 2.0
+    # cloudinary
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -132,10 +133,17 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # noqa
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# If you use cloudinary
+''' when you use cloudinary just FILE_STORAGE pass True '''
+CLOUDINARY = FILE_STORAGE(False)
+if CLOUDINARY:
+    CLOUDINARY_STORAGE = CLOUDINARY_STORAGE
+    DEFAULT_FILE_STORAGE=CLOUDINARY
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
