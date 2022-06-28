@@ -14,7 +14,13 @@ DATABASES = {
 
 # secret key
 SECRET_KEY = 'django-insecure-uj2gqvtm1y(-%4_xhi73#+#w%mf!^f%4bk9$yuh9el7+u+796z' # noqa
-
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+STATICFILES_DIR = os.path.join(BASE_DIR, "staticfiles")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+MEDIA_DIR = os.path.join(BASE_DIR, "media")
+LOGS_DIR = os.path.join(BASE_DIR, "logs")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 # adding config
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'dwrvrww0z',
