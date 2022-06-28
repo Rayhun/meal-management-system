@@ -140,7 +140,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # If you use cloudinary
 ''' when you use cloudinary just pass True '''
-if False:
+if True:
     CLOUDINARY_STORAGE = CLOUDINARY_STORAGE
     DEFAULT_FILE_STORAGE = FILE_STORAGE
 

@@ -57,7 +57,7 @@ coverage.xml
 
 # Django stuff:
 *.log
-local_settings.py
+# local_settings.py
 db.sqlite3
 db.sqlite3-journal
 
@@ -109,7 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-local_settings/
+# local_settings/
 media/
 
 # Spyder project settings
