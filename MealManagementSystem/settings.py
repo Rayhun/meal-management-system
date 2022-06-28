@@ -12,8 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from .local_settings import (
-    DATABASES, SECRET_KEY, CLOUDINARY_STORAGE, FILE_STORAGE,
-    STATIC_DIR, STATICFILES_DIR
+    DATABASES, SECRET_KEY, CLOUDINARY_STORAGE, FILE_STORAGE
 )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -130,21 +129,18 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-STATIC_DIR = os.getenv('STATIC_DIR', STATIC_DIR)
-STATICFILES_DIR = os.getenv('STATICFILES_DIR', STATICFILES_DIR)
 
-STATIC_ROOT = STATIC_DIR 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATICFILES_DIR, ] 
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage' # noqa
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # If you use cloudinary
 ''' when you use cloudinary just pass True '''
-if True:
+if False:
     CLOUDINARY_STORAGE = CLOUDINARY_STORAGE
     DEFAULT_FILE_STORAGE = FILE_STORAGE
 
